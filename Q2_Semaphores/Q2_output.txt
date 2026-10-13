@@ -1,0 +1,66 @@
+[$ threadtest
+=== Q1: Thread Test (no synchronization) ===
+Created thread 1
+Created thread 2
+Created thread 3
+Joined thread 1
+Joined thread 2
+Joined thread 3
+Final counter = 238781 (expected 300000 if no race)
+
+
+[$ synctest
+=== Q2: Synchronized Counter (with semaphore) ===
+Created thread 1
+Created thread 2
+Created thread 3
+Joined thread 1
+Joined thread 2
+Joined thread 3
+Final counter = 300000 (expected 300000)
+
+
+I$ prodcons
+=== Q2: Producer-Consumer (buffer size 5) ===
+Produced item 1 at slot 0
+Produced
+item
+2 at slot 1
+Produced
+item 3 at slot 2
+Produced
+item
+4 at slot 3
+Produced
+item 5 at slot 4
+Consumed
+item 1 from slot 0
+Consumed item 2 from slot 1
+Consumed
+item 3 from slot
+2
+Consumed
+item 4 from slot 3
+Consumed
+item 5 from slot 4
+Produced
+item 6 at slot 0
+Produced
+item 7 at slot 1
+Produced item 8 at slot 2
+Produced
+item 9 at slot 3
+Produced
+item 10 at slot 4
+Consumed
+item 6 from slot 0
+Consumed
+item
+7 from slot 1
+Consumed
+item 8 from slot 2
+Consumed item 9 from slot 3
+Consumed
+item 10 from slot 4
+Producer-Consumer finished: 10 items produced
+and consumed.
