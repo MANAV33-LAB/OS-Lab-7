@@ -1,0 +1,19 @@
+$ priotest
+=== Q4: Priority Scheduling with Aging ===
+Child pid 4 started with priority 3
+Laging] pid 5 waited >30 ticks: priority 10 -> 9 [aging] pid 6 waited >30 ticks: priority 10 -> 9 [aging] pid 7 waited >30 ticks: priority 10 -> 9
+Child pid 4 (initial priority 3) FINISHED, current priority 3, at tick 53
+Child pid 5 started with priority 8
+Laging] pid 6 waited >30 ticks: priority 9 -> 8 [aging] pid 7 waited >30 ticks: priority 9 ->
+8
+Child pid 6 started with priority 14
+Child pid 7 started with priority 20
+[aging] pid 3 waited >30 ticks: priority 10 -> 9
+laging] pid 6 waited >30 ticks: priority 14 -> 13 [aging] pid 7 waited >30 ticks: priority 20 -> 19
+Child pid 5 (initial priority 8) FINISHED, current priority
+8, at tick 112
+[aging] pid 7 waited >30 ticks: priority 19 -> 18
+Laging] pid 7 waited >30 ticks: priority 18 -> 17
+Child pid 6 (initial priority 14) FINISHED, current priority 13, at tick 170
+Child pid 7 (initial priority 20) FINISHED, current priority 17, at tick 226
+Priority test complete.
