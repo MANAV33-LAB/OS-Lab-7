@@ -5,4 +5,3 @@
 - Q3: Deadlock Detection (Banker's Algorithm)
 - Q4: Priority-Based Preemptive Scheduling with Aging
 
-Work in progress — files to be added before lab submission.
