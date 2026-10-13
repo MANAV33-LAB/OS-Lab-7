@@ -1,0 +1,9 @@
+[$ threadtest
+=== Q1: Thread Test (no synchronization) ===
+Created thread 1
+Created thread 2
+Created thread 3
+Joined thread 1
+Joined thread 2
+Joined thread
+Final counter = 264162 (expected 300000 if no race)
