@@ -1,0 +1,80 @@
+$ deadlock 1
+=== Q3: Deadlock Detection and Banker's Algorithm ===
+
+===== TEST 1: Deadlock detection (deadlocked matrix) =====
+Available: 0 0 0
+Proc  Allocation  Request
+P0    0 1 0       0 0 0
+P1    2 0 0       2 0 2
+P2    3 0 3       0 0 1
+P3    2 1 1       1 0 0
+P4    0 0 2       0 0 2
+  P0 can finish. Work becomes: 0 1 0
+Result: DEADLOCK detected. Deadlocked processes: P1 P2 P3 P4
+$
+
+$ deadlock 2
+=== Q3: Deadlock Detection and Banker's Algorithm ===
+
+===== TEST 2: Banker's Algorithm (safe state) =====
+Available: 3 3 2
+Proc  Allocation  Need
+P0    0 1 0       7 4 3
+P1    2 0 0       1 2 2
+P2    3 0 2       6 0 0
+P3    2 1 1       0 1 1
+P4    0 0 2       4 3 1
+State is SAFE. Safe sequence: P1 P3 P4 P0 P2
+
+$ deadlock 3
+=== Q3: Deadlock Detection and Banker's Algorithm ===
+
+===== TEST 3: State that becomes unsafe after a request =====
+Available: 3 3 2
+Proc  Allocation  Need
+P0    0 1 0       7 4 3
+P1    2 0 0       1 2 2
+P2    3 0 2       6 0 0
+P3    2 1 1       0 1 1
+P4    0 0 2       4 3 1
+State is SAFE. Safe sequence: P1 P3 P4 P0 P2
+
+--- Step 1 ---
+Process P1 requests [1, 0, 2]
+State is SAFE. Safe sequence: P1 P3 P4 P0 P2
+Request GRANTED for P1.
+Available: 2 3 0
+Proc  Allocation  Need
+P0    0 1 0       7 4 3
+P1    3 0 2       0 2 0
+P2    3 0 2       6 0 0
+P3    2 1 1       0 1 1
+P4    0 0 2       4 3 1
+
+--- Step 2 ---
+Process P0 requests [0, 2, 0]
+State is UNSAFE.
+Request DENIED for P0 (would lead to unsafe state).
+Available: 2 3 0
+Proc  Allocation  Need
+P0    0 1 0       7 4 3
+P1    3 0 2       0 2 0
+P2    3 0 2       6 0 0
+P3    2 1 1       0 1 1
+P4    0 0 2       4 3 1
+$
+
+$ deadlock 4
+=== Q3: Deadlock Detection and Banker's Algorithm ===
+
+===== TEST 4: Real xv6 processes with pipes =====
+Process A (pid 7) holds the write end of Pipe1 and waits to read Pipe2.
+Process B (pid 8) holds the write end of Pipe2 and waits to read Pipe1.
+Both are blocked. Running detection (R0 = Pipe1 write, R1 = Pipe2 write):
+Available: 0 0
+Proc  Allocation  Request
+P0    1 0         0 1
+P1    0 1         1 0
+Result: DEADLOCK detected (circular wait). Deadlocked: A B
+Deadlocked processes killed and cleaned up.
+$
